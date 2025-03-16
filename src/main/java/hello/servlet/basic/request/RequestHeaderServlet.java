@@ -37,6 +37,39 @@ public class RequestHeaderServlet extends HttpServlet {
 
     }
 
+    private static void printStartLine(HttpServletRequest request) {
+        System.out.println("--- REQUEST-LINE start ---");
+
+        System.out.println("request.getMethod() = " + request.getMethod());
+        System.out.println("request.getProtocol() = " + request.getProtocol());
+        System.out.println("request.getScheme() = " + request.getScheme());
+        // http://localhost:8080/request-header
+        System.out.println("request.getRequestURL() = " + request.getRequestURL());
+        // request-test
+        System.out.println("request.getRequestURI() = " + request.getRequestURI());
+        // username=hi
+        System.out.println("request.getQueryString() = " + request.getQueryString());
+        System.out.println("request.getisSecure() = " + request.isSecure());
+        System.out.println("--- REQUEST-LINE end ---");
+        System.out.println();
+    }
+
+    private static void printHeaders(HttpServletRequest request) {
+        System.out.println("--- Header start ---");
+        /*
+        Enumeration<String> headerNames = request.getHeaderNames();
+        while(headerNames.hasMoreElements()) {
+            String headerName = headerNames.nextElement();
+            System.out.println(headerName + ": " + headerName);
+        }
+        */
+        request.getHeaderNames().asIterator()
+                .forEachRemaining(headerName -> System.out.println(headerName + ": " + headerName));
+
+        System.out.println("--- Header end ---");
+        System.out.println();
+    }
+
     private static void printHeaderUtils(HttpServletRequest request) {
         System.out.println("--- Header 편의 조회 start ---");
         System.out.println("[Host 편의 조회]");
@@ -68,36 +101,7 @@ public class RequestHeaderServlet extends HttpServlet {
         System.out.println();
     }
 
-    private static void printHeaders(HttpServletRequest request) {
-        System.out.println("--- Header start ---");
-        /*
-        Enumeration<String> headerNames = request.getHeaderNames();
-        while(headerNames.hasMoreElements()) {
-            String headerName = headerNames.nextElement();
-            System.out.println(headerName + ": " + headerName);
-        }
-        */
-        request.getHeaderNames().asIterator()
-                        .forEachRemaining(headerName -> System.out.println(headerName + ": " + headerName));
 
-        System.out.println("--- Header end ---");
-        System.out.println();
-    }
 
-    private static void printStartLine(HttpServletRequest request) {
-        System.out.println("--- REQUEST-LINE start ---");
 
-        System.out.println("request.getMethod() = " + request.getMethod());
-        System.out.println("request.getProtocol() = " + request.getProtocol());
-        System.out.println("request.getScheme() = " + request.getScheme());
-        // http://localhost:8080/request-header
-        System.out.println("request.getRequestURL() = " + request.getRequestURL());
-        // request-test
-        System.out.println("request.getRequestURI() = " + request.getRequestURI());
-        // username=hi
-        System.out.println("request.getQueryString() = " + request.getQueryString());
-        System.out.println("request.getisSecure() = " + request.isSecure());
-        System.out.println("--- REQUEST-LINE end ---");
-        System.out.println();
-    }
 }
