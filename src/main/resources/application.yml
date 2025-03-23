@@ -5,3 +5,9 @@ logging:
         coyote:
           http11:
             Http11InputBuffer: TRACE
+
+spring:
+  mvc:
+    view:
+      prefix: /WEB-INF/views/
+      suffix: .jsp
